@@ -1,6 +1,7 @@
 from asyncio.windows_events import NULL
 from tarfile import NUL
 from colorama import Fore, init, Style
+import os
 from os import system
 
 ############################## READ FILE ##############################
@@ -84,6 +85,8 @@ def CreateFile():
 
     print(Fore.LIGHTGREEN_EX + "\n Created file successfully.\n" + Style.RESET_ALL)
 
+    myfile.close()
+
     print(
         Fore.RED + ' [1] ' + Fore.WHITE + ' Write current file\n' +
         Fore.RED + ' [2] ' + Fore.WHITE + ' Back to main\n\n'+
@@ -101,6 +104,32 @@ def CreateFile():
 
 ############################## DELETE FILE ##############################
 
+def DeleteFile():
+
+    system('cls')
+
+    deleteFile = input(Fore.GREEN + " Enter File's Name : " + Style.RESET_ALL)
+
+    deleteFile = deleteFile + ".txt"
+
+    if os.path.exists(deleteFile):
+        os.remove(deleteFile)
+        print(Fore.LIGHTGREEN_EX + "\n Deleted file successfully.\n" + Style.RESET_ALL)
+    else:
+        print(Fore.RED + " The File doesn't exist.")
+
+    print(
+        Fore.RED + ' [1] ' + Fore.WHITE + ' Back to main\n\n'+
+        Fore.LIGHTBLACK_EX + " Press any key to exit..."
+    )
+
+    answer = input(Fore.GREEN + " >> " + Style.RESET_ALL)
+
+    if answer == '1':
+        main()
+    else:
+        pass
+
 ############################## MAIN ##############################
 
 def main():
@@ -111,7 +140,8 @@ def main():
         Fore.RED + ' [1] ' + Fore.WHITE + "Read File\n" +
         Fore.RED + ' [2] ' + Fore.WHITE + "Write File\n" +
         Fore.RED + ' [3] ' + Fore.WHITE + "Create File\n" +
-        Fore.RED + ' [4] ' + Fore.WHITE + "Delete File\n\n" +
+        Fore.RED + ' [4] ' + Fore.WHITE + "Delete File\n" +
+        Fore.RED + ' [5] ' + Fore.WHITE + "Rename File\n\n" +
         Fore.LIGHTBLACK_EX + " Press any key to exit..."
     )
 
@@ -124,6 +154,8 @@ def main():
     elif answer == '3':
         CreateFile()
     elif answer == '4':
+        DeleteFile()
+    elif answer == '5':
         pass
     else:
         pass
