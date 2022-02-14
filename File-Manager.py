@@ -126,9 +126,7 @@ def RenameFile():
 
     oldFile = input(Fore.GREEN + " Enter Old File's Name : " + Style.RESET_ALL)
     
-    print('\n')
-
-    newFile = input(Fore.GREEN + " Enter New File's Name : " + Style.RESET_ALL)
+    newFile = input(Fore.GREEN + "\n Enter New File's Name : " + Style.RESET_ALL)
 
     oldFile = oldFile + '.txt'
     newFile = newFile + '.txt'
@@ -156,9 +154,7 @@ def CopyFile():
 
     oldFile = input(Fore.GREEN + " Enter Old File's Name : " + Style.RESET_ALL)
 
-    print('\n')
-
-    newFile = input(Fore.GREEN + " Enter New File's Name : " + Style.RESET_ALL)
+    newFile = input(Fore.GREEN + "\n Enter New File's Name : " + Style.RESET_ALL)
 
     oldFile = oldFile + '.txt'
     newFile = newFile + '.txt'
@@ -171,6 +167,24 @@ def CopyFile():
     END("Copied")
 
 ############################## MOVE FILE ##############################
+
+def MoveFile():
+
+    system('cls')
+
+    oldFile = input(Fore.GREEN + " Enter Old File's Name : " + Style.RESET_ALL)
+
+    newFile = input(Fore.GREEN + "\n Enter New File's Name : " + Style.RESET_ALL)
+
+    oldFile = oldFile + '.txt'
+    newFile = newFile + '.txt'
+
+    with open(oldFile) as old:
+        with open(newFile, "w") as new:
+            for line in old:
+                new.write(line)
+
+    END("Moved")
 
 ############################## MAIN ##############################
 
@@ -204,7 +218,7 @@ def main():
     elif answer == '6':
         CopyFile()
     elif answer == '7':
-        pass
+        MoveFile()
     else:
         pass
 
