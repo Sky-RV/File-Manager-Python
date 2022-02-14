@@ -23,7 +23,7 @@ def ReadFile():
     print(Fore.LIGHTGREEN_EX + "\n Read in file successfully.\n" + Style.RESET_ALL)
 
     print(
-        Fore.RED + ' [1] ' + Fore.WHITE + ' Back to main\n'+
+        Fore.RED + ' [1] ' + Fore.WHITE + ' Back to main\n\n'+
         Fore.LIGHTBLACK_EX + " Press any key to exit..."
     )
 
@@ -42,10 +42,9 @@ def WriteFile(n):
 
     if n == NULL:
         writeFile = input(Fore.GREEN + " Enter File's Name : " + Style.RESET_ALL)
+        writeFile = writeFile + '.txt'
     else:
         writeFile = n
-
-    writeFile = writeFile + '.txt'
 
     myfile = open(writeFile, "a") # append to the end of the file
 
@@ -60,7 +59,7 @@ def WriteFile(n):
     print(Fore.LIGHTGREEN_EX + "\n Writed in file successfully.\n" + Style.RESET_ALL)
 
     print(
-        Fore.RED + ' [1] ' + Fore.WHITE + ' Back to main\n'+
+        Fore.RED + ' [1] ' + Fore.WHITE + ' Back to main\n\n'+
         Fore.LIGHTBLACK_EX + " Press any key to exit..."
     )
 
@@ -87,7 +86,7 @@ def CreateFile():
 
     print(
         Fore.RED + ' [1] ' + Fore.WHITE + ' Write current file\n' +
-        Fore.RED + ' [2] ' + Fore.WHITE + ' Back to main\n'+
+        Fore.RED + ' [2] ' + Fore.WHITE + ' Back to main\n\n'+
         Fore.LIGHTBLACK_EX + " Press any key to exit..."
     )
 
@@ -121,7 +120,7 @@ def main():
     if answer == '1':
         ReadFile()
     elif answer == '2':
-        WriteFile()
+        WriteFile(n=NULL)
     elif answer == '3':
         CreateFile()
     elif answer == '4':
