@@ -1,8 +1,28 @@
+from ast import For
 from asyncio.windows_events import NULL
 from tarfile import NUL
 from colorama import Fore, init, Style
 import os
 from os import system
+
+############################## END ##############################
+
+def END(text):
+    
+    if text != NULL:
+        print(Fore.LIGHTGREEN_EX + "\n {text} in file successfully.\n" .format(text) + Style.RESET_ALL)
+
+    print(
+        Fore.RED + ' [1] ' + Fore.WHITE + ' Back to main\n\n'+
+        Fore.LIGHTBLACK_EX + " Press any key to exit..."
+    )
+
+    answer = input(Fore.GREEN + " >> " + Style.RESET_ALL)
+
+    if answer == '1':
+        main()
+    else:
+        pass
 
 ############################## READ FILE ##############################
 
@@ -21,19 +41,7 @@ def ReadFile():
 
     myfile.close()
 
-    print(Fore.LIGHTGREEN_EX + "\n Read in file successfully.\n" + Style.RESET_ALL)
-
-    print(
-        Fore.RED + ' [1] ' + Fore.WHITE + ' Back to main\n\n'+
-        Fore.LIGHTBLACK_EX + " Press any key to exit..."
-    )
-
-    answer = input(Fore.GREEN + " >> " + Style.RESET_ALL)
-
-    if answer == '1':
-        main()
-    else:
-        pass
+    END('Read')
 
 ############################## WRITE FILE ##############################
 
@@ -57,19 +65,7 @@ def WriteFile(n):
 
     myfile.close()
 
-    print(Fore.LIGHTGREEN_EX + "\n Writed in file successfully.\n" + Style.RESET_ALL)
-
-    print(
-        Fore.RED + ' [1] ' + Fore.WHITE + ' Back to main\n\n'+
-        Fore.LIGHTBLACK_EX + " Press any key to exit..."
-    )
-
-    answer = input(Fore.GREEN + " >> " + Style.RESET_ALL)
-
-    if answer == '1':
-        main()
-    else:
-        pass
+    END('Writed')
 
 ############################## CREATE FILE ##############################
 
@@ -118,17 +114,39 @@ def DeleteFile():
     else:
         print(Fore.RED + " The File doesn't exist.")
 
-    print(
-        Fore.RED + ' [1] ' + Fore.WHITE + ' Back to main\n\n'+
-        Fore.LIGHTBLACK_EX + " Press any key to exit..."
-    )
+    END(text=NULL)
 
-    answer = input(Fore.GREEN + " >> " + Style.RESET_ALL)
+############################## RENAME FILE ##############################
 
-    if answer == '1':
-        main()
+def RenameFile():
+
+    system('cls')
+
+    oldFile = input(Fore.GREEN + " Enter Old File's Name : " + Style.RESET_ALL)
+
+    newFile = input(Fore.GREEN + " Enter New File's Name : " + Style.RESET_ALL)
+
+    oldFile = oldFile + '.txt'
+    newFile = newFile + '.txt'
+
+    if os.path.exists(oldFile) and not(os.path.exists(newFile)):
+        os.rename(oldFile, newFile)
+        print(Fore.LIGHTGREEN_EX + "\n Renamed file successfully.\n" + Style.RESET_ALL)
+
+    elif not(os.path.exists(oldFile)):
+        print(Fore.RED + " The {oldFile} doesn't exist.".format(oldFile))
+    
+    elif not(os.path.exists(newFile)):
+        print(Fore.RED + " The {newFile} doesn't exist.".format(newFile))
+    
     else:
-        pass
+        print(Fore.RED + " The {oldFile} doesn't exist or there is another {newFile}.".format(oldFile, newFile))
+    
+    END(text=NULL)
+
+############################## COPY FILE ##############################
+
+############################## MOVE FILE ##############################
 
 ############################## MAIN ##############################
 
@@ -141,7 +159,9 @@ def main():
         Fore.RED + ' [2] ' + Fore.WHITE + "Write File\n" +
         Fore.RED + ' [3] ' + Fore.WHITE + "Create File\n" +
         Fore.RED + ' [4] ' + Fore.WHITE + "Delete File\n" +
-        Fore.RED + ' [5] ' + Fore.WHITE + "Rename File\n\n" +
+        Fore.RED + ' [5] ' + Fore.WHITE + "Rename File\n" +
+        Fore.RED + ' [6] ' + Fore.WHITE + "Copy File\n" +
+        Fore.RED + ' [7] ' + Fore.WHITE + "Move File\n\n" +
         Fore.LIGHTBLACK_EX + " Press any key to exit..."
     )
 
@@ -156,6 +176,10 @@ def main():
     elif answer == '4':
         DeleteFile()
     elif answer == '5':
+        RenameFile()
+    elif answer == '6':
+        pass
+    elif answer == '7':
         pass
     else:
         pass
