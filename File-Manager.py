@@ -1,15 +1,49 @@
-import sys
+from asyncio.windows_events import NULL
+from tarfile import NUL
 from colorama import Fore, init, Style
 from os import system
 
 ############################## READ FILE ##############################
 
-############################## WRITE FILE ##############################
+def ReadFile():
 
-def WriteFile():
     system('cls')
 
-    writeFile = input(Fore.GREEN + " Enter File's Name : " + Style.RESET_ALL)
+    readFile = input(Fore.GREEN + " Enter File's Name : " + Style.RESET_ALL)
+
+    readFile = readFile + ".txt"
+
+    myfile = open(readFile, "r") 
+
+    print(Fore.GREEN + " Your Text : ")
+    print(Fore.WHITE + myfile.read())
+
+    myfile.close()
+
+    print(Fore.LIGHTGREEN_EX + "\n Read in file successfully.\n" + Style.RESET_ALL)
+
+    print(
+        Fore.RED + ' [1] ' + Fore.WHITE + ' Back to main\n'+
+        Fore.LIGHTBLACK_EX + " Press any key to exit..."
+    )
+
+    answer = input(Fore.GREEN + " >> " + Style.RESET_ALL)
+
+    if answer == '1':
+        main()
+    else:
+        pass
+
+############################## WRITE FILE ##############################
+
+def WriteFile(n):
+
+    system('cls')
+
+    if n == NULL:
+        writeFile = input(Fore.GREEN + " Enter File's Name : " + Style.RESET_ALL)
+    else:
+        writeFile = n
 
     writeFile = writeFile + '.txt'
 
@@ -60,7 +94,7 @@ def CreateFile():
     answer = input(Fore.GREEN + " >> " + Style.RESET_ALL)
 
     if answer == '1':
-        pass
+        WriteFile(newFile)
     elif answer == '2':
         main()
     else:
@@ -85,7 +119,7 @@ def main():
     answer = input(Fore.GREEN + " >> " + Style.RESET_ALL)
 
     if answer == '1':
-        pass
+        ReadFile()
     elif answer == '2':
         WriteFile()
     elif answer == '3':
