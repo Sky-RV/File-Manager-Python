@@ -186,6 +186,24 @@ def MoveFile():
 
     END("Moved")
 
+############################## FORMAT FILE ##############################
+
+def FormatFile():
+
+    system('cls')
+
+    formatFile = input(Fore.GREEN + " Enter File's Name : " + Style.RESET_ALL)
+
+    formatFile = formatFile + ".txt"
+
+    myfile = open(formatFile, "w")
+
+    myfile.write("")
+
+    myfile.close()
+
+    END("Formated")
+
 ############################## MAIN ##############################
 
 def main():
@@ -199,7 +217,8 @@ def main():
         Fore.RED + ' [4] ' + Fore.WHITE + "Delete File\n" +
         Fore.RED + ' [5] ' + Fore.WHITE + "Rename File\n" +
         Fore.RED + ' [6] ' + Fore.WHITE + "Copy File\n" +
-        Fore.RED + ' [7] ' + Fore.WHITE + "Move File\n\n" +
+        Fore.RED + ' [7] ' + Fore.WHITE + "Move File\n" +
+        Fore.RED + ' [8] ' + Fore.WHITE + "Format File\n\n" +
         Fore.LIGHTBLACK_EX + " Press any key to exit..."
     )
 
@@ -219,6 +238,8 @@ def main():
         CopyFile()
     elif answer == '7':
         MoveFile()
+    elif answer == '8':
+        FormatFile()
     else:
         pass
 
