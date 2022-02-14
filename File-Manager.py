@@ -1,16 +1,17 @@
-from ast import For
-from asyncio.windows_events import NULL
-from tarfile import NUL
 from colorama import Fore, init, Style
 import os
 from os import system
+from tqdm import trange
+import time
+from asyncio.windows_events import NULL
+from tarfile import NUL
 
 ############################## END ##############################
 
 def END(text):
     
     if text != NULL:
-        print(Fore.LIGHTGREEN_EX + "\n {} in file successfully.\n".format(text) + Style.RESET_ALL)
+        print(Fore.LIGHTGREEN_EX + " {} in file successfully.\n".format(text) + Style.RESET_ALL)
 
     print(
         Fore.RED + ' [1] ' + Fore.WHITE + ' Back to main\n\n'+
@@ -39,7 +40,7 @@ def ReadFile():
     print()
 
     print(Fore.GREEN + " Your Text : ")
-    print(Fore.WHITE + myfile.read())
+    print(" " + Fore.WHITE + myfile.read())
 
     myfile.close()
 
@@ -202,6 +203,11 @@ def FormatFile():
 
     myfile.close()
 
+    print(Fore.GREEN)
+    for i in trange(100):
+        time.sleep(0.1)
+
+    print()
     END("Formated")
 
 ############################## MAIN ##############################
