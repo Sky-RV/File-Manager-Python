@@ -10,7 +10,7 @@ from os import system
 def END(text):
     
     if text != NULL:
-        print(Fore.LIGHTGREEN_EX + "\n {text} in file successfully.\n" .format(text) + Style.RESET_ALL)
+        print(Fore.LIGHTGREEN_EX + "\n {} in file successfully.\n".format(text) + Style.RESET_ALL)
 
     print(
         Fore.RED + ' [1] ' + Fore.WHITE + ' Back to main\n\n'+
@@ -35,6 +35,8 @@ def ReadFile():
     readFile = readFile + ".txt"
 
     myfile = open(readFile, "r") 
+
+    print()
 
     print(Fore.GREEN + " Your Text : ")
     print(Fore.WHITE + myfile.read())
@@ -123,6 +125,8 @@ def RenameFile():
     system('cls')
 
     oldFile = input(Fore.GREEN + " Enter Old File's Name : " + Style.RESET_ALL)
+    
+    print('\n')
 
     newFile = input(Fore.GREEN + " Enter New File's Name : " + Style.RESET_ALL)
 
@@ -134,17 +138,37 @@ def RenameFile():
         print(Fore.LIGHTGREEN_EX + "\n Renamed file successfully.\n" + Style.RESET_ALL)
 
     elif not(os.path.exists(oldFile)):
-        print(Fore.RED + " The {oldFile} doesn't exist.".format(oldFile))
+        print(Fore.RED + " The {} doesn't exist.".format(oldFile))
     
     elif not(os.path.exists(newFile)):
-        print(Fore.RED + " The {newFile} doesn't exist.".format(newFile))
+        print(Fore.RED + " The {} doesn't exist.".format(newFile))
     
     else:
-        print(Fore.RED + " The {oldFile} doesn't exist or there is another {newFile}.".format(oldFile, newFile))
+        print(Fore.RED + " The {} doesn't exist or there is another {}.".format(oldFile, newFile))
     
     END(text=NULL)
 
 ############################## COPY FILE ##############################
+
+def CopyFile():
+
+    system('cls')
+
+    oldFile = input(Fore.GREEN + " Enter Old File's Name : " + Style.RESET_ALL)
+
+    print('\n')
+
+    newFile = input(Fore.GREEN + " Enter New File's Name : " + Style.RESET_ALL)
+
+    oldFile = oldFile + '.txt'
+    newFile = newFile + '.txt'
+
+    with open(oldFile) as old:
+        with open(newFile, "a") as new:
+            for line in old:
+                new.write(line)
+
+    END("Copied")
 
 ############################## MOVE FILE ##############################
 
@@ -178,7 +202,7 @@ def main():
     elif answer == '5':
         RenameFile()
     elif answer == '6':
-        pass
+        CopyFile()
     elif answer == '7':
         pass
     else:
